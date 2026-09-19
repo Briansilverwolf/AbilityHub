@@ -101,7 +101,7 @@ flowchart TD
     CalculateTotals --> BreakdownViewer[Breakdown Views by Viewer Type]
     BreakdownViewer --> BreakdownCategory[Breakdown Views by Job Category/Industry]
     BreakdownCategory --> ExtractSearchTerms[Extract Search Terms/Qualifications]
-    ExtractSearchTerms --> DisplayRecent[Display Recent Viewers (Privacy-Protected)]
+    ExtractSearchTerms --> DisplayRecent[Display Recent Viewers `Privacy-Protected`]
     DisplayRecent --> ApplyFilters{Apply Date Range Filters?}
     ApplyFilters -- Yes --> Recalculate[Recalculate Metrics for Date Range]
     Recalculate --> BreakdownViewer

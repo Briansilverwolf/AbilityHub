@@ -92,7 +92,7 @@ flowchart TD
     Start[Start] --> DetectEvent[Detect Profile View/Search Appearance/Interaction]
     DetectEvent --> CheckPrefs[Check Notification Preferences for Event Type]
     CheckPrefs --> EnabledEvent{Event Type Enabled?}
-    EnabledEvent -- No --> LogEventOnly[Log Event Only (No Notification)]
+    EnabledEvent -- No --> LogEventOnly[Log Event Only `No Notification`]
     LogEventOnly --> End[End]
     EnabledEvent -- Yes --> GetPrefs[Get Notification Channel & Frequency Settings]
     GetPrefs --> ImmediateOrDigest{Immediate Alert or Digest?}
@@ -102,7 +102,7 @@ flowchart TD
     WaitDigest -- No --> DetectEvent
     WaitDigest -- Yes --> ConstructNotice
     ConstructNotice --> ApplyPrivacy[Apply Privacy Controls to Message]
-    ApplyPrivacy --> SendNotice[Send Notification via Channel(s)]
+    ApplyPrivacy --> SendNotice[Send Notification via Channel`s` ]
     SendNotice --> LogNotice[Log Notification in History]
     LogNotice --> End[End]
 ```

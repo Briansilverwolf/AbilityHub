@@ -82,3 +82,52 @@ pass rather than deleting it outright, so the reasoning stays visible.
 - FileStorage
 
 ---
+
+## 2026-09-11 — Pass 2: refinement via CRC cards and structural-view files
+
+### Outcomes of this pass
+- Created CRC cards and class‑diagram slices for each use case (UC‑001 through UC‑005) in the structural‑view directory.
+- Verified each candidate class against the detailed flow of its use case; retained only those that actually participate.
+- Introduced several service‑ and infrastructure‑level classes that emerged from the analysis (e.g., `ConfigurationService`, `ValidationService`, `FileStorage`, `AnalyticsService`, `NotificationService`, `DigestScheduler`, `PrivacyService`, `ExportService`, `GuidanceService`).
+- Refined role classes: kept `User` as a single concrete class with a `role` attribute; the specific actor types (Job Seeker, Opportunity Seeker, Business/Hiring Entity, System Administrator) are now represented as values of that attribute rather than separate classes.
+- Refined event modelling: kept `ViewEvent`, added `SearchAppearanceEvent` and `InteractionEvent` as specializations of a base `NotificationEvent` (or `EventBase`) to support UC‑004 and UC‑005.
+- Updated the list of carried‑forward candidates (see below).
+
+### Candidates carried forward to next refinement (strike‑through = dropped in this pass)
+
+- Profile  
+- CV  
+- Skill  
+- Experience  
+- Education  
+- Qualification  
+- JobCategory  
+- UploadLimit  
+- ViewEvent  
+- SearchAppearanceEvent *(new)*  
+- InteractionEvent *(new)*  
+- NotificationPreference  
+- NotificationHistory  
+- NotificationService  
+- DigestScheduler  
+- PrivacyService  
+- AnalyticsService  
+- ValidationService  
+- ExtractionService  
+- FileStorage  
+- ConfigurationService  
+- GuidanceService  
+- ExportService  
+- User *(replaces JobSeeker, OpportunitySeeker, BusinessHiringEntity, SystemAdministrator as role‑specific instances)*  
+- Database *(kept as infrastructure placeholder)*  
+- SearchEngine *(represented indirectly via SearchService; kept for completeness)*  
+- AuthenticationToken *(implicit in User/AuthenticationService; kept as placeholder)*  
+- UserSession *(implicit in security context; kept as placeholder)*  
+
+### Dropped candidates (struck)
+- ~~SearchQuery~~ (replaced by `searchContext` string inside events)  
+- ~~Viewer~~ (role absorbed into `userType` enum on `ViewEvent` and `initiatorIdHash` on `InteractionEvent`)  
+- ~~Notification~~ (generic concept replaced by concrete event types and notification‑service infrastructure)  
+- ~~OpportunitySeeker~~, ~~Business/Hiring Entity~~, ~~System Administrator~~, ~~Job Seeker~~ (merged into `User.role`)  
+
+Next pass will focus on reviewing the CRC cards for consistency, checking for missing responsibilities/collaborators, and beginning the behavioural view for the selected complex use cases.
